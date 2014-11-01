@@ -1,4 +1,4 @@
-#   Analyse data for COmputer Labs
+#   Analyse data for HUM Computer Labs and put daily graph out
 
 # Load data and packages
 load("labdatahistorical.RData")
@@ -48,5 +48,6 @@ ggplot(labdataper, aes(x=room,y=value, fill=usagecat)) +
                               labels=c("In use", "Not in use", "Not connected"))
     #scale_y_continuous(labels = c("0","25","50","75","100"))
 
+# Stop writing to pdf file
     dev.off()
 
