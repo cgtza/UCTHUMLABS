@@ -1,11 +1,15 @@
 #   Analyse data for COmputer Labs
 
 # Load data and packages
+ 
 load("labdatahistorical.RData")
+options(repos="http://r.adu.org.za/")
 if(!require(lubridate))install.packages("lubridate")
 if(!require(ggplot2))install.packages("ggplot2")
 if(!require(dplyr))install.packages("dplyr")
-if(!require(tidyr))install.packages("tidyr")
+if(!require(tidyr))install.packages("tidyr",repos="http://cran.mirror.ac.za/")
+library(tidyr)
+
 
 #   Select only HUM labs
 labdata$room<-toupper(labdata$room)
@@ -14,7 +18,7 @@ rownames(labdata)<-NULL
 labdata$room<-factor(labdata$room)
 
 #   By most recent day
-filen<-paste(today(),".pdf")
+filen<-paste("D:/Dropbox/Labdata/",today(),".pdf")
 pdf(paste(filen),width=10,height=7) # INitialise pdf file device
 labdataper<-labdata %>%
   filter(day==day(now()) & month==month(now(),label=T) & year==year(now()))
